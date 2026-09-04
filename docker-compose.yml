@@ -1,0 +1,19 @@
+services:
+  newapi-sidecar:
+    build: .
+    restart: unless-stopped
+    environment:
+      NEWAPI_URL: http://new-api:3000
+      NEWAPI_ACCESS_TOKEN: ${NEWAPI_ACCESS_TOKEN:?set NEWAPI_ACCESS_TOKEN in .env}
+      NEWAPI_USER_ID: ${NEWAPI_USER_ID:?set NEWAPI_USER_ID in .env}
+      CHECK_INTERVAL_SECONDS: ${CHECK_INTERVAL_SECONDS:-60}
+      CHECK_CONCURRENCY: ${CHECK_CONCURRENCY:-1}
+      TEST_TIMEOUT_SECONDS: ${TEST_TIMEOUT_SECONDS:-60}
+      SUCCESS_COUNT: ${SUCCESS_COUNT:-1}
+      RECOVERY_GROUPS: ${RECOVERY_GROUPS:-}
+    networks:
+      - new-api-network
+
+networks:
+  new-api-network:
+    external: true
