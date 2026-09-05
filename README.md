@@ -4,7 +4,7 @@ Go sidecar，不调用 NewAPI 的“测试所有通道”功能，只处理 `sta
 
 ## 部署
 
-1. 在 NewAPI 后台创建专用管理员账号并生成 Access Token；将 Token 和该账号用户 ID 写入服务器上的 `newapi-sidecar/.env`，不要提交或发送 Token。
+1. 在 NewAPI 后台创建访问令牌 Access Token；将 Token 和该账号用户 ID 写入服务器上的 `newapi-sidecar/.env`，不要提交或发送 Token。
 2. 确保 sidecar 加入 NewAPI 所在的 Docker 网络。若现有网络不是 `new-api-network`，修改 `docker-compose.yml` 最后一段的网络名。
 3. 启动：`docker compose up -d --build`。
 
